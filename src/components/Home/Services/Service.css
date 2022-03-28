@@ -1,0 +1,25 @@
+.service{
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 375px){
+    .service{
+        margin-top: 220px !important;
+    }
+}
+@media screen and (max-width: 280px){
+    .service{
+        margin-top: 220px;
+    }
+}
+
+@media screen and (max-width: 414px){
+    .service{
+        margin-top: 220px;
+    }
+}
+@media screen and (max-width: 540px){
+    .service{
+        margin-top: 220px;
+    }
+}
