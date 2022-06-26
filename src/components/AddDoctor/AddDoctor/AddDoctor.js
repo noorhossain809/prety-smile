@@ -9,10 +9,10 @@ const styles = {
     background: "linear-gradient(45deg, #2dd4bf 30%, #67e8f9 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+    // boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
     color: "white",
     height: 48,
-    padding: "0 60px",
+    
   },
 };
 
@@ -58,7 +58,7 @@ const AddDoctor = (props) => {
       <Box sx={{display: 'flex',alignItems: 'center',mx:'auto',}}>
         <Paper elevation={3} sx={{p:6,}}>
         <form onSubmit={handleSubmit}>
-          <div class="form-group">
+          <div class="form-group my-4">
             {/* <label for="exampleInputEmail1">Email address</label> */}
             {/* <input
               onBlur={handleBur}
@@ -70,7 +70,7 @@ const AddDoctor = (props) => {
             <TextField
               onBlur={handleBur}
               
-              helperText="Please enter your email"
+              
               id="demo-helper-text-misaligned"
               type="email"
               label="Email"
@@ -90,7 +90,7 @@ const AddDoctor = (props) => {
             <TextField
               onBlur={handleBur}
               
-              helperText="Please enter your name"
+              
               id="demo-helper-text-misaligned"
               type="name"
               label="Name"
@@ -121,7 +121,7 @@ const AddDoctor = (props) => {
           {/* <button type="submit" class="btn btn-primary">
             Submit
           </button> */}
-          <Button type="submit" className={classes.root} sx={{ fontWeight: "bold", mb: 6, px:6, color:'white', }}>
+          <Button type="submit" className={classes.root} sx={{ fontWeight: "bold", mb: 6, color:'white', width: '100%' }}>
           Submit
           </Button>
         </form>

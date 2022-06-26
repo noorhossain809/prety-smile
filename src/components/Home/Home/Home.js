@@ -8,10 +8,11 @@ import Header from '../Header/Header';
 import MakeAppointment from '../MakeAppointment/MakeAppointment';
 import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
+import './Home.css'
 
 const Home = () => {
     return (
-        <div>
+        <div className="main_body">
             <Header></Header>
             <Services></Services>
             <FeaturedSurvice></FeaturedSurvice>

@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import img from '../../../images/55770083_651238301972397_3328366562229878784_n.jpg'
 import logo from '../../../images/dent_care-removebg-preview (1).png'
+import useAuth from '../../../hooks/useAuth';
 
 const pages = ['Home', 'About', 'Dental Service', 'Reviews', 'Blog', 'Contact Us'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
 
 const Navbars = () => {
-
+const {user, logout} = useAuth()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -153,7 +154,7 @@ const Navbars = () => {
 
           <Box sx={{ flexGrow: 0,  display: { xs: 'none', md: 'flex' }}}>
           
-              <Link to="/home">
+              <Link to="/home" style={{textDecoration: "none"}}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, mx:2, color: 'white', display: 'block' }}
@@ -167,7 +168,7 @@ const Navbars = () => {
               >
                 About
               </Button>
-              <Link to="/appointment">
+              <Link to="/appointment" style={{textDecoration: "none"}}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, mx:2, color: 'white', display: 'block' }}
@@ -216,19 +217,52 @@ const Navbars = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link to="/dashboard">
+              
+             
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  
+                 <ul className="list-unstyled">
+                 <li>
+                 <Link to="/dashboard"  style={{textDecoration: "none"}}>
               <Button
-                
-                sx={{textTransform: 'capitalize', color: 'dark'}}
+                align="center"
+                sx={{textTransform: 'capitalize', color: "#212121",textAlign:"center", fontSize: 20,}}
               >
                 Dashboard
               </Button>
               </Link>
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                 </li>
+              {user?.email ? 
+              
+               <li>
+               
+               <Button
+                 align="center"
+                 onClick={logout}
+                 sx={{textTransform: 'capitalize', color: "#212121",textAlign:"center", fontSize: 20, }}
+               >
+                 Logout
+               </Button>
+              
+                  </li> 
+                 :
+                 <li>
+                 <Link to="/login"  style={{textDecoration: "none"}}>
+              <Button
+                align="center"
+                sx={{textTransform: 'capitalize', color: "#212121",textAlign:"center", fontSize: 20, }}
+              >
+                Login
+              </Button>
+              </Link>
+              </li>
+                 }
+                 
+                
+                 </ul>
+               
                 </MenuItem>
-              ))}
+            
             </Menu>
           </Box>
         </Toolbar>

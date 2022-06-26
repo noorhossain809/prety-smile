@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faSignOutAlt, faCalendar, faGripHorizontal, faUsers, faCalendarAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faSignOutAlt, faCalendar, faGripHorizontal, faUsers, faCalendarAlt, faUserPlus,faHouse, faHouseUser, faGripVertical } from '@fortawesome/free-solid-svg-icons';
  import {  faFileAlt } from '@fortawesome/free-regular-svg-icons'
  import { UserContext } from '../../../App';
+import AuthProvider from '../../../context/AuthProvider/AuthProvider';
 
 const Sidebar = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(AuthProvider)
     const [isDoctor, setIsDoctor] = useState(false);
 
     // useEffect( () => {
@@ -20,46 +21,48 @@ const Sidebar = () => {
     //      .then(data => setIsDoctor(data))
     // }, [])
     return (
-        <div className="sidebar d-flex flex-column justify-content-between col-md-12 py-5 px-4" style={{ height:'100vh'}}>
-            <ul className="list-unstyled">
-            <li>
-                    <Link to="/home" className="text-white">
-                        <FontAwesomeIcon icon={faGripHorizontal} /> <span>Home</span> 
+        <div className="sidebar d-flex flex-column justify-content-between col-md-10 py-5 px-4" style={{ height:'100vh'}}>
+            <ul className="list-unstyled mt-4 container">
+            <li className="">
+                 
+                 <Link to="/home" >
+                        <p className="text-white "><FontAwesomeIcon icon={faHouseUser} />Home</p> 
                     </Link>
+                 
                 </li>
             <li>
                     <Link to="/dashboard" className="text-white">
-                        <FontAwesomeIcon icon={faGripHorizontal} /> <span>Dashboard</span> 
+                        <p><FontAwesomeIcon icon={faGripVertical} /> Dashboard</p> 
                     </Link>
                 </li>
                 <li>
-                    <Link to="/allpatients" className="text-white">
-                    <FontAwesomeIcon icon={faCalendarAlt} /> <span>Appointment</span>
+                    <Link to="/allAppointments" className="text-white">
+                    <p><FontAwesomeIcon icon={faCalendarAlt} /> Appointment</p>
                     </Link>
                 </li>
                 <li>
                     <Link to="/adddoctor" className="text-white">
-                    <FontAwesomeIcon icon={faUserPlus} /> <span>Add Doctor</span></Link>
+                     <p><FontAwesomeIcon icon={faUserPlus} /> Add Doctor</p></Link>
                 </li>
-               { isDoctor && <div>
+               <div>
                 <li>
                     <Link to="/doctor/patients" className="text-white">
-                    <FontAwesomeIcon icon={faUsers} /> <span>Patients</span></Link>
+                     <p><FontAwesomeIcon icon={faUsers} /> Patients</p></Link>
                 </li>
                 
                 <li>
-                    <Link to="/doctor/prescriptions" className="text-white">
-                    <FontAwesomeIcon icon={faFileAlt} /> <span>Prescriptions</span></Link>
+                    <Link to="/prescriptions" className="text-white">
+                     <p><FontAwesomeIcon icon={faFileAlt} /> Prescriptions</p></Link>
                 </li>
                 <li>
                     <Link to="/doctor/setting" className="text-white">
-                        <FontAwesomeIcon icon={faCog} /> <span>Setting</span></Link>
+                         <p><FontAwesomeIcon icon={faCog} /> Setting</p></Link>
                 </li>
-                </div>}
+                </div>
                 
             </ul>
-            <div>
-                <Link to="/" className="text-white"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>
+            <div className="log container">
+                <Link to="/" className="text-white"> <p><FontAwesomeIcon icon={faSignOutAlt} /> Logout</p></Link>
             </div>
         </div>
     );

@@ -3,6 +3,7 @@ import React from "react";
 import chair from "../../../images/chair 1.png";
 import PropTypes from "prop-types";
 import { withStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 
 const styles = {
   root: {
@@ -34,9 +35,12 @@ const HeaderMain = (props) => {
             <br /> impedit asperiores laboriosam, dolores odio voluptatem <br />{" "}
             magnam error eum perferendis quo rem tempore vitae.
           </p>
-          <Button className={classes.root} sx={{ fontWeight: "bold", mb: 6 }}>
+          <Link to="/appointment" style={{textDecoration: "none"}}>
+          <Button className={classes.root} sx={{ fontWeight: "bold", mb: 6 , }} >
             Get Appointment
           </Button>
+          </Link>
+          
         </div>
         <div className="col-md-6">
           <img src={chair} alt="" className="img-fluid" />

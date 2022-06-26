@@ -44,11 +44,25 @@ const bookingData = [
         subject: 'Teeth Orthodontics',
         visitingHour: '8:00 AM - 9:00 AM',
         totalSpace: 10
+    },
+    {
+        _id: '5e8df6a0e6e8231764dc23e3',
+        id: 7,
+        subject: 'Teeth Orthodontics',
+        visitingHour: '8:00 AM - 9:00 AM',
+        totalSpace: 10
+    },
+    {
+        _id: '5e8df6a0e6e8231764dc23e3',
+        id: 8,
+        subject: 'Teeth Orthodontics',
+        visitingHour: '8:00 AM - 9:00 AM',
+        totalSpace: 10
     }
 ]
 
 const BookAppointment = ({date}) => {
-    console.log(date)
+    
     return (
         <section>
             <div>

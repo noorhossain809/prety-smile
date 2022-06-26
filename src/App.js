@@ -11,16 +11,19 @@ import Login from './components/Login/Login/Login';
 import { createContext, useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard/Dashboard';
 import AllPatients from './components/AllPatients/AllPatients/AllPatients';
+import AllAppointments from './components/AllApointments/AllAppointments';
+import Prescriptions from './components/Prescriptions/Prescriptions';
 import AddDoctor from './components/AddDoctor/AddDoctor/AddDoctor';
 import PrivateRoute from './components/Login/PrivateRoute/PrivateRoute';
+import SignUp from './components/Login/SignUp/SignUp';
+import AuthProvider from './context/AuthProvider/AuthProvider';
 
 
-export const UserContext = createContext()
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
   return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+    <AuthProvider>
     <Router>
       <Switch>
         <Route path="/home">
@@ -29,14 +32,23 @@ function App() {
         <Route path="/login">
           <Login></Login>
         </Route>
-        <Route path="/appointment">
-          <Appointment></Appointment>
+        <Route path="/register">
+          <SignUp></SignUp>
         </Route>
+        <PrivateRoute path="/appointment">
+          <Appointment></Appointment>
+        </PrivateRoute>
         <Route path="/dashboard">
         <Dashboard></Dashboard>
         </Route>
-        <Route path="/allpatients">
+        <Route path="/doctor/patients">
           <AllPatients></AllPatients>
+        </Route>
+        <Route path="/allAppointments">
+          <AllAppointments></AllAppointments>
+        </Route>
+        <Route path="/prescriptions">
+          <Prescriptions></Prescriptions>
         </Route>
         <Route path="/adddoctor">
           <AddDoctor></AddDoctor>
@@ -47,7 +59,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
-    </UserContext.Provider>
+    </AuthProvider>
   );
 }
 

@@ -2,9 +2,7 @@ import React from 'react';
 import img from '../../../images/images/doctor-sm.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
-import doctor1 from '../../../images/doctor2-removebg-preview.png'
-import doctor2 from '../../../images/doctor3-removebg-preview.png'
-import doctor3 from '../../../images/doctors.png'
+
 
 const Doctor = ({doctor}) => {
     console.log(doctor)

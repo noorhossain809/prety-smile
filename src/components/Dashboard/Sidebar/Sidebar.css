@@ -13,3 +13,17 @@
 .sidebar svg{
     margin-right: 5px;
 }
+.sidebar li a{
+
+        text-decoration: none;
+}
+.sidebar li p{
+    font-size: 24px;
+}
+.log{
+    font-size: 24px;
+    
+}
+.log a {
+    
+}
