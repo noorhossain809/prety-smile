@@ -1,26 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import loginimg from "../../../images/loginbg.png";
 import {
   Alert,
+  Box,
   Button, 
-  Collapse, 
-  FilledInput,
+  Container, 
   FormControl,
+  Grid,
   IconButton,
   Input,
   InputAdornment,
   InputLabel,
+  Paper,
   Skeleton,
-  Snackbar,
-  TextField,
+  Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { withStyles } from "@mui/styles";
 import { Link, useHistory } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import useAuth from "../../../hooks/useAuth";
-import CloseIcon from '@mui/icons-material/Close';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const styles = {
   root: {
@@ -99,28 +99,27 @@ const SignUp = (props) => {
     e.preventDefault();
   };
 
-  const [open, setOpen] = React.useState(true);
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false)
-    
-  };
-
-  return (
-    <div className="login-page container">
-      <div className="row align-items-center" style={{ height: "100vh" }}>
-        <div className="col-md-5 shadow p-5">
-          <h3
-            className="text-center mb-4"
-            style={{ fontSize: 22, color: "#9e9e9e" }}
-          >
-            Register
-          </h3>
+return (
+    <Container >
+      <Grid container spacing={2} sx={{alignItems: 'center', mb:5, p:3}} style={{ height: "100vh" }}>
+        <Grid xs={12} sm={12} md={5}>
+        <Paper elevation={3} sx={{p:5}}>
+        <Typography variant="subtitle1" >
+                
+                <KeyboardBackspaceIcon /> <Link to="/home" style={{ color: "#e91e63" }}>
+                   Back to home
+                 </Link>
+               </Typography>
+               <Typography
+             variant="h5"
+             textAlign="center"
+             style={{ color: "#9e9e9e" }}
+           >
+             Register
+           </Typography>
           {!isLoading && (
             <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
+              <Box className="form-group" sx={{mt:4}}>
                 <FormControl sx={{ width: "100%" }} variant="standard">
                   <InputLabel htmlFor="standard-adornment-amount" sx={{ m: 1 }}>
                     Name
@@ -137,8 +136,8 @@ const SignUp = (props) => {
                     }
                   />
                 </FormControl>
-              </div>
-              <div className="form-group">
+              </Box>
+              <Box className="form-group">
                 <FormControl sx={{ width: "100%" }} variant="standard">
                   <InputLabel htmlFor="standard-adornment-amount" sx={{ m: 1 }}>
                     Email
@@ -154,8 +153,8 @@ const SignUp = (props) => {
                     }
                   />
                 </FormControl>
-              </div>
-              <div className="form-group">
+              </Box>
+              <Box className="form-group">
                 <FormControl sx={{ width: "100%" }} variant="standard">
                   <InputLabel htmlFor="standard-adornment-amount" sx={{ m: 1 }}>
                     Password
@@ -189,9 +188,9 @@ const SignUp = (props) => {
                     }
                   />
                 </FormControl>
-              </div>
+              </Box>
 
-              <div className="mt-5">
+              <Box sx={{mt:5}}>
                 <Button
                   value="submit"
                   type="submit"
@@ -207,16 +206,16 @@ const SignUp = (props) => {
                 >
                   Submit
                 </Button>
-              </div>
-              <div className="mt-5">
-            <p className="text-black text-center">
+              </Box>
+              <Box sx={{mt:5}}>
+            <Typography variant="subtitle2" textAlign="center" className="text-black">
               Already have an account?{" "}
               <Link to="/login" style={{ color: "#e91e63" }}>
                 Login
               </Link>{" "}
               here
-            </p>
-          </div>
+            </Typography>
+          </Box>
             </form>
           )}
           {isLoading && (
@@ -230,13 +229,15 @@ const SignUp = (props) => {
           {authError}
         </Alert>
       }
-        </div>
+        </Paper>
+        
+        </Grid>
        
-        <div className="col-md-7 d-none d-md-block">
+        <Grid md={7} className=" d-none d-md-block">
           <img className="" src={loginimg} alt="" />
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 SignUp.propTypes = {

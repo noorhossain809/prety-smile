@@ -21,19 +21,23 @@ const MakeAppointment = (props) => {
   const { classes } = props;
   return (
     <Container className="make-appointment">
-      <Box>
-        <Grid container>
-          <Grid md={5} className="d-none d-md-block">
+      
+       <Box marginTop={{xs:0, sm:0, md: 24}}>
+       <Grid container spacing={{md:6, sm:1, xs:1}}>
+          <Grid xs={12} sm={12} md={5} className="d-none d-lg-block">
             <img src={doctor} alt="" />
           </Grid>
-          <Grid md={7} className="py-5">
+          <Grid item xs={12} sm={12} md={7} lg={7} marginTop={{xs:0, sm:0,md:0}} className="d-block">
             <Typography
               variant="h5"
               sx={{ color: "#2dd4bf", fontWeight: "bold" }}
+             
             >
               APPOINTMENT
             </Typography>
-            <Typography variant="h3" sx={{ my: 3, color: "white" }}>
+            <Typography
+             fontSize={{md:48, sm:24, xs:26}}
+            variant="h3" sx={{ my: 3, color: "white" }}>
               Make an appointment <br /> Today
             </Typography>
             <Typography
@@ -58,7 +62,8 @@ const MakeAppointment = (props) => {
             </Button>
           </Grid>
         </Grid>
-      </Box>
+       </Box>
+      
     </Container>
   );
 };

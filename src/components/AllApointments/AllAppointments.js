@@ -69,7 +69,7 @@ const AllAppointments = (props) => {
             
             <div className="col-md-5 " >
             <div className="mt-2">
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDatePicker
       
         orientation="landscape"

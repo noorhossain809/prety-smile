@@ -19,7 +19,7 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 
-const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time }) => {
+const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time,setBookingSuccess }) => {
     const {user} = useAuth()
     const initial = {
         email : user.email, 
@@ -31,7 +31,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
         weight: '',
     };
     const [bookingInfo, setBookingInfo] = useState(initial)
-    const {handleSubmit, register, formState: { errors } } = useForm();
+    const { formState: { errors } } = useForm();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -42,6 +42,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
         setBookingInfo(newInfo)
     }
     const handleFormSubmit = (e) => {
+        e.preventDefault();
         console.log('clicked me', time, appointmentOn, date);
 
         // data.serviceName = appointmentOn;
@@ -53,29 +54,28 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
             ...bookingInfo,
             time,
             serviceName: appointmentOn,
-            date: date.toLocalDateString()
+            // date: date.toLocalDateString('dd/MM/yyyy')
+            date: new Date(date).toLocaleDateString()
+
 
         }
-        
+        console.log(appointment)
 
-       
-        // data.service = appointmentOn;
-        // data.date = date;
-        // data.created = new Date();
-
-        fetch('http://localhost:5000/appointments', {
+        fetch('https://fathomless-scrubland-68650.herokuapp.com/appointments', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(appointment)
         })
         .then(res => res.json())
         .then(success => {
-            if(success){
+            if(success.insertedId){
+                setBookingSuccess(true)
                 closeModal();
-                alert('Your request successfully')
+                console.log(success)
+                
             }
         })
-        e.preventDefault();
+        
     };
 
 
@@ -94,23 +94,23 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
                 <p className="text-secondary text-center"><small>ON {date.toDateString()}</small></p>
                 <form className="p-5" onSubmit={handleFormSubmit}>
                 <div className="form-group">
-                        <input onBlur={handleOnBlur} type="text" name="patientName" defaultValue={user.displayName} className="form-control" />
+                        <input onBlur={handleOnBlur} type="text" name="patientName" defaultValue={user.displayName} className="form-control" required />
                         {errors.name && <span className="text-danger">This field is required</span>}
 
                     </div>
                     
                     <div className="form-group">
-                        <input onBlur={handleOnBlur} type="text" name="email" defaultValue={user.email} className="form-control" />
+                        <input onBlur={handleOnBlur} type="text" name="email" defaultValue={user.email} className="form-control" required />
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>
                     <div className="form-group">
-                        <input onBlur={handleOnBlur} type="text" name="address" placeholder="Address" className="form-control" />
+                        <input onBlur={handleOnBlur} type="text" name="address" placeholder="Address" className="form-control" required />
                         {errors.address && <span className="text-danger">This field is required</span>}
                     </div>
                     <div className="form-group">
                         <div className="row">
                         <div className="col-md-6">
-                        <input onBlur={handleOnBlur} type="text" name="phone" placeholder="01xxxxxxxxx" className="form-control" />
+                        <input onBlur={handleOnBlur} type="text" name="phone" placeholder="01xxxxxxxxx" className="form-control" required />
                         {errors.phone && <span className="text-danger">This field is required</span>}
                         </div>
                        <div className="col-md-6">
@@ -122,7 +122,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
                     <div className="form-group row">
                         <div className="col-4">
 
-                            <select onBlur={handleOnBlur} className="form-control" name="gender"  >
+                            <select onBlur={handleOnBlur} className="form-control" name="gender" required >
                                 <option disabled={true} value="Not set">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -132,11 +132,11 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time })
 
                         </div>
                         <div className="col-4">
-                            <input onBlur={handleOnBlur}  className="form-control" name="age" placeholder="Your Age" type="number" />
+                            <input onBlur={handleOnBlur}  className="form-control" name="age" placeholder="Your Age" type="number" required />
                             {errors.age && <span className="text-danger">This field is required</span>}
                         </div>
                         <div className="col-4">
-                            <input onBlur={handleOnBlur} className="form-control" name="weight" placeholder="Weight" type="number" />
+                            <input onBlur={handleOnBlur} className="form-control" name="weight" placeholder="Weight" type="number" required />
                             {errors.weight && <span className="text-danger">This field is required</span>}
                         </div>
                     </div>

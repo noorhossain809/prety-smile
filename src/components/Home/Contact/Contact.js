@@ -1,4 +1,4 @@
-import { Button, Container } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import "./Contact.css";
 import PropTypes from "prop-types";
@@ -20,17 +20,20 @@ const Contact = (props) => {
     const {classes} = props;
   return (
     <Container className=" container ">
-      <div className="contact my-5 py-5">
-        <div className="section-header text-center text-white mb-5">
-          <h6
+      <Box className="contact" sx={{my:5, py: 4}}>
+        <Box className="section-header " textAlign="center" sx={{mb:6}}> 
+          <Typography
+          variant="subtitle1"
             style={{ fontWeight: "800", color: "#2dd4bf" }}
             className="text-uppercase"
           >
             Contact Us
-          </h6>
-          <h2 style={{ fontWeight: "600" }}>Always Contact with us</h2>
-        </div>
-        <div className="col-md-9 mx-auto">
+          </Typography>
+          <Typography variant="h4" color="white" style={{ fontWeight: "600" }}>Always Contact with us</Typography>
+        </Box>
+        <Box  display="grid" gridTemplateColumns="repeat(12, 1fr)" >
+          <Box gridColumn="span 12" mx={{xs:2, sm:2,md: 10}}>
+          
           <form action="">
             <div className="form-group">
               <input
@@ -68,8 +71,10 @@ const Contact = (props) => {
               </Button>
             </div>
           </form>
-        </div>
-      </div>
+         
+          </Box>
+        </Box>
+      </Box>
     </Container>
   );
 };

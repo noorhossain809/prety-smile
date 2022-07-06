@@ -1,8 +1,6 @@
 import { Skeleton } from '@mui/material';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router';
-import { UserContext } from '../../../App';
-import AuthProvider from '../../../context/AuthProvider/AuthProvider';
 import useAuth from '../../../hooks/useAuth';
 
 const PrivateRoute = ({children, ...rest}) => {

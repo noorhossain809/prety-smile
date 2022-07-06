@@ -3,8 +3,8 @@ import React from 'react';
 const AppointmentShortList = ({appointments}) => {
     return (
         <table className="table table-borderless">
-            <thead>
-                <tr className="text-secondary" scope="col">
+            <thead >
+                <tr className="text-secondary" >
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>

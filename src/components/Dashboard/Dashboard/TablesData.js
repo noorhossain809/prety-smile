@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,25 +15,6 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { pink } from '@mui/material/colors';
-
-function createData(
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 const styles = {
   root: {
@@ -57,9 +37,10 @@ const styles = {
 
 
 
-const TableData= (props) => {
+const TableData= (props, {appointments}) => {
   const [value, setValue] = React.useState(null);
     const { classes} = props;
+    console.log('',appointments)
     return (
       <TableContainer component={Paper}>
         <div className="mx-4">
@@ -124,195 +105,7 @@ const TableData= (props) => {
                 </div>
               </TableCell>
             </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                02
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button  sx={{ fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18, color: 'black'}}>
-            Not Added
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' sx={{ fontWeight: "medium", backgroundColor:'#64b5f6', textTransform: 'capitalize',letterSpacing: 0.8,fontSize: 16,}}>
-            Pending
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                03
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button className={classes.root} sx={{color: '#fff', fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18}}>
-            View
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' color='success' sx={{ fontWeight: "medium",  textTransform: 'capitalize',letterSpacing: 0,fontSize: 16,}}>
-            Approved
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                04
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button className={classes.root} sx={{color: '#fff', fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18}}>
-            View
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' sx={{ fontWeight: "medium", backgroundColor:'#64b5f6', textTransform: 'capitalize',letterSpacing: 0.8,fontSize: 16,}}>
-            Pending
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                05
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button sx={{ fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18, color: 'black'}}>
-            Not Added
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' className={classes.colors} sx={{ fontWeight: "medium",  textTransform: 'capitalize',letterSpacing: 0,fontSize: 16,backgroundColor: '#e91e63'}}>
-            Cancelled
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                06
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button className={classes.root} sx={{ fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18,color: '#fff'}}>
-            View
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' sx={{ fontWeight: "medium", backgroundColor:'#64b5f6', textTransform: 'capitalize',letterSpacing: 0.8,fontSize: 16,}}>
-            Pending
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                07
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>07-06-2022</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>3:00 PM</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>01700000000</TableCell>
-              <TableCell align="">
-              <Button className={classes.root} sx={{ fontWeight: "medium", textTransform: 'capitalize',letterSpacing: 0.5, fontSize: 18, color: '#fff'}}>
-            View
-          </Button>
-              </TableCell>
-              <TableCell align="">
-                <div className="d-flex" style={{gap: 2}}>
-                <Button variant='contained' sx={{ fontWeight: "medium", backgroundColor:'#64b5f6', textTransform: 'capitalize',letterSpacing: 0.8,fontSize: 16,}}>
-            Pending
-          </Button>
-          <button 
-          style={{backgroundColor:'#ffb74d', color: 'white', border: 'none', borderRadius: 5, padding: '0 15px'}}
-          
-          >
-          <FontAwesomeIcon icon={faPen} />
-          </button>
-          
-                </div>
-              </TableCell>
-            </TableRow>
-            
-         
-        </TableBody>
+            </TableBody>
       </Table>
         </div>
     </TableContainer>

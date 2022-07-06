@@ -7,7 +7,8 @@ import { getAuth,
   signInWithEmailAndPassword, 
   GoogleAuthProvider,
   signInWithPopup,
-  updateProfile
+  updateProfile,
+  getIdToken
 } from "firebase/auth";
 
 
@@ -17,6 +18,8 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true)
   const [authError, setAuthError] = useState('')
+  const [admin, setAdmin] = useState(false)
+  const [token, setToken] = useState("")
    
 
   const auth = getAuth();
@@ -27,11 +30,12 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        // const user = userCredential.user;
         const newUser = {email, displayName: name}
         setUser(newUser)
-
-        updateProfile(auth.currentUser, {
+        
+          // sent to firebase after creation
+          updateProfile(auth.currentUser, {
           displayName: name
         }).then(() => {
           // Profile updated!
@@ -42,7 +46,9 @@ const useFirebase = () => {
         });
         
         history.replace('/')
+        
         setAuthError('')
+        saveUser(email, name, 'POST')
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -76,6 +82,7 @@ const useFirebase = () => {
     const destination = location?.state?.from || '/'
     history.replace(destination)
     setAuthError('')
+    saveUser(user.email, user.displayName, 'PUT')
     // ...
   }).catch((error) => {
     setAuthError(error.message);
@@ -98,7 +105,13 @@ const useFirebase = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUser(user)
+           setUser(user)
+          getIdToken(user)
+          .then(idToken => {
+            setToken(idToken)
+            console.log(idToken)
+          })
+          
         } else {
           setUser({})
         }
@@ -107,10 +120,32 @@ const useFirebase = () => {
       return () => unsubscribe;
   },[])
 
+  useEffect(() => {
+    fetch(`https://fathomless-scrubland-68650.herokuapp.com/users/${user.email}`)
+    .then(res => res.json())
+    .then(data => setAdmin(data.admin))
+  }, [])
+
+  const saveUser = (email, displayName, method) => {
+    const user = {email, displayName}
+
+        fetch('https://fathomless-scrubland-68650.herokuapp.com/users', {
+          method: method,
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+  }
+
   return {
     user,
     isLoading,
     authError,
+    admin,
+    token,
     register,
     login,
     GoogleSign,

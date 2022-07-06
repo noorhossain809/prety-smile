@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,18 +6,20 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
-import PropTypes from "prop-types";
-import { withStyles } from "@mui/styles";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const AppointmentDataTable = ({appointments}) => {
+const AppointmentDataTable = () => {
     const [value, setValue] = useState(new Date())
+    const [appointments, setAppointments] = useState([])
+
+    useEffect(() => {
+      fetch('https://fathomless-scrubland-68650.herokuapp.com/allAppointments')
+      .then(res=> res.json())
+      .then(data => setAppointments(data))
+    }, [])
     return (
         <>
         
@@ -52,137 +54,32 @@ const AppointmentDataTable = ({appointments}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-         
-            <TableRow
+          {
+            appointments.map((appointment) => (
+              <TableRow
               
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
                 01
               </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
+              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>{appointment.patientName}</TableCell>
+              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>{appointment.gender}</TableCell>
+              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>{appointment.age} age</TableCell>
+              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>{appointment.weight} kg</TableCell>
               <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
+              {appointment.phone}
               </TableCell>
               <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
+               {appointment.address}
               </TableCell>
             </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                02
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                03
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                04
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                05
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                06
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            <TableRow
-              
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                07
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Karim Ahmed</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>Male</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>20</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>50kg</TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-              017xxxxxxxx
-              </TableCell>
-              <TableCell style={{fontSize: 16, color: '#212121', fontWeight: 'bold'}}>
-                South Gazirchar, Saver, Dhaka
-              </TableCell>
-            </TableRow>
-            
-            
+
+            ))
+          }
          
-        </TableBody>
+            
+           </TableBody>
       </Table>
         </div>
     </TableContainer>

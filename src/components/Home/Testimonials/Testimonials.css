@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 150px;
+    
 }
 .testimonials .card{
     border-color: transparent;
@@ -12,3 +13,14 @@
     background: transparent;
     border: 0;
 }  
+
+/* @media screen and (max-width: 390px) {
+    .containers{
+       display: none
+    }
+}
+@media screen and (max-width: 768px) {
+    .containers{
+        display: none
+    }
+} */

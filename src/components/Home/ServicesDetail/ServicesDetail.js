@@ -3,8 +3,8 @@ import React from "react";
 
 const ServicesDetail = ({ service }) => {
   return (
-    <Grid item md={4}>
-      <Card sx={{ minWidth: 275, border: 0, boxShadow: 0, mt: 10, mb: 4 }}>
+    <Grid xs={12} sm={12} md={4}>
+      <Card sx={{ border: 0, boxShadow: 0, mt:6}}>
         <CardMedia
           component="img"
           style={{ width: "auto", height: "100px", margin: "0 auto" }}

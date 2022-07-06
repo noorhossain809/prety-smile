@@ -1,6 +1,5 @@
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography, Stack } from "@mui/material";
 import React, { useState } from "react";
-import Sidebar from "../../Dashboard/Sidebar/Sidebar";
 import PropTypes from "prop-types";
 import { withStyles } from "@mui/styles";
 
@@ -37,7 +36,7 @@ const AddDoctor = (props) => {
     formData.append("name", info.name);
     formData.append("email", info.email);
 
-    fetch("http://localhost:5000/addADoctor", {
+    fetch("https://fathomless-scrubland-68650.herokuapp.com/addADoctor", {
       method: "POST",
       body: formData,
     })
@@ -50,85 +49,59 @@ const AddDoctor = (props) => {
       });
   };
   return (
-    <div className="container-fluid row">
-      <div className="col-md-3">
-        <Sidebar></Sidebar>
-      </div>
-      
-      <Box sx={{display: 'flex',alignItems: 'center',mx:'auto',}}>
-        <Paper elevation={3} sx={{p:6,}}>
-        <form onSubmit={handleSubmit}>
-          <div class="form-group my-4">
-            {/* <label for="exampleInputEmail1">Email address</label> */}
-            {/* <input
-              onBlur={handleBur}
-              type="email"
-              class="form-control"
-              name="email"
-              placeholder="Enter email"
-            /> */}
-            <TextField
-              onBlur={handleBur}
-              
-              
-              id="demo-helper-text-misaligned"
-              type="email"
-              label="Email"
-              name="email"
-              fullWidth
-            />
-          </div>
-          <div class="form-group">
-            {/* <label for="exampleInputPassword1">Name</label>
-            <input
-              onBlur={handleBur}
-              type="text"
-              class="form-control"
-              name="name"
-              placeholder="name"
-            /> */}
-            <TextField
-              onBlur={handleBur}
-              
-              
-              id="demo-helper-text-misaligned"
-              type="name"
-              label="Name"
-              name="name"
-              fullWidth
-            />
+    <Box>
+    <Stack
+  display="grid" gridTemplateColumns="repeat(12, 1fr)"
+    >
+      <Stack gridColumn="span 12" mx={{xs:2, sm:8,md: 20}} sx={{mt:15,}}>
+      <Paper elevation={3} 
+      sx={{p:2}}
+      >
+         <Typography variant="h6" sx={{mb:3, textAlign: 'center',color:'#0fcfec'}}>Add an doctor</Typography>
+         <form onSubmit={handleSubmit}>
+           <Box class="form-group" sx={{my:4}}>
+             <TextField
+               onBlur={handleBur}
+               id="demo-helper-text-misaligned"
+               type="email"
+               label="Email"
+               name="email"
+               fullWidth
+             />
+           </Box>
+           <Box class="form-group">
+             <TextField
+               onBlur={handleBur}
+               
+               
+               id="demo-helper-text-misaligned"
+               type="name"
+               label="Name"
+               name="name"
+               fullWidth
+             />
+             
+           </Box>
+           <Box class="form-group">
             
-          </div>
-          <div class="form-group">
-            {/* <label for="exampleInputPassword1">Upload image</label> */}
-            {/* <input
-              onChange={handleFileChange}
-              type="file"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="file"
-            /> */}
-            <TextField
-              onChange={handleFileChange}
-              helperText="Please chose your file"
-              type="file"
-              label=" "
-              
-              
-            />
-          </div>
-
-          {/* <button type="submit" class="btn btn-primary">
-            Submit
-          </button> */}
-          <Button type="submit" className={classes.root} sx={{ fontWeight: "bold", mb: 6, color:'white', width: '100%' }}>
-          Submit
-          </Button>
-        </form>
-        </Paper>
-        </Box>
-      
-    </div>
+             <TextField
+               onChange={handleFileChange}
+               helperText="Please chose your file"
+               type="file"
+               label=" "
+               
+               
+             />
+           </Box>
+           <Button type="submit" className={classes.root} sx={{ fontWeight: "bold", mb: 6, color:'white', width: '100%' }}>
+           Submit
+           </Button>
+         </form>
+         </Paper>
+      </Stack>
+    
+       </Stack>
+       </Box>
   );
 };
 AddDoctor.propTypes = {

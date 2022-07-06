@@ -35,7 +35,7 @@ const BussinessInfo = () => {
         // </section>
         <Box>
            <Container>
-                <Grid container>
+                <Grid container spacing={2} marginTop={{xs:12, sm:0, md:0}}>
             {
                     infosData.map(info => <InfoCard info={info}></InfoCard>)
                 }

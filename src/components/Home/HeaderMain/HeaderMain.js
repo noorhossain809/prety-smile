@@ -1,4 +1,4 @@
-import { Button, Container } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import chair from "../../../images/chair 1.png";
 import PropTypes from "prop-types";
@@ -20,33 +20,37 @@ const styles = {
 const HeaderMain = (props) => {
   const { classes } = props;
   return (
-    <>
-      <main
-        style={{ height: "600px" }}
-        className="row d-flex align-items-center mt-5"
+    <Container>
+      <Grid
+      container 
+      spacing={2}
+      style={{ height: "600px" }}
+      marginTop={6}
       >
-        <div className="col-md-4 offset-md-1">
-          <h1 style={{ color: "#3A4256" }}>
+        <Grid item xs={12} sm={5} md={5} className="">
+          <Box sx={{mt:4}}>
+          <Typography variant="h3" style={{ color: "#3A4256" }}>
             Your New Smile <br></br> Starts Here
-          </h1>
-          <p className="text-secondary">
+          </Typography>
+          <Typography variant="subtitle1" className="text-secondary" sx={{my: 2}}>
             {" "}
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus{" "}
             <br /> impedit asperiores laboriosam, dolores odio voluptatem <br />{" "}
             magnam error eum perferendis quo rem tempore vitae.
-          </p>
+          </Typography>
           <Link to="/appointment" style={{textDecoration: "none"}}>
           <Button className={classes.root} sx={{ fontWeight: "bold", mb: 6 , }} >
             Get Appointment
           </Button>
           </Link>
+          </Box>
           
-        </div>
-        <div className="col-md-6">
+        </Grid>
+        <Grid item xs={12} sm={7} md={7} className="">
           <img src={chair} alt="" className="img-fluid" />
-        </div>
-      </main>
-    </>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 HeaderMain.propTypes = {

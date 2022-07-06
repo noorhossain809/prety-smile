@@ -20,11 +20,11 @@ const FeaturedSurvice = (props) => {
   const { classes } = props;
   return (
     <Container>
-      <Grid container spacing={12} sx={{ mt: 6, mb: 12 }}>
+      <Grid container spacing={12} sx={{ mt: 2, mb: 12 }}>
         <Grid item md={6}>
           <img className="img-fluid" src={feature} alt="" sx={{borderRadius: 6}}/>
         </Grid>
-        <Grid item md={6} sx={{ mt: 8 }}>
+        <Grid item md={6} marginTop={{xs:0, sm:0, md:8}}>
           <Typography
             variant="h1"
             sx={{

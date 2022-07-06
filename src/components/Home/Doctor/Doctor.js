@@ -1,24 +1,51 @@
 import React from 'react';
-import img from '../../../images/images/doctor-sm.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
+import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 
 
 const Doctor = ({doctor}) => {
     console.log(doctor)
     return (
-        <div className="col-md-4 text-center">
-            
-            {/* { doctor.image ?
+        <Grid xs={12} sm={12} md={3}>
+      <Card sx={{ border: 0, boxShadow: 0, mt:6}}>
+        <CardMedia
+          component="img"
+          style={{ width: "auto", height: "150px", margin: "0 auto" }}
+          image={doctor.img}
+          alt="green iguana"
+        />
+        <CardContent sx={{ textAlign: "center" }}>
+          <Typography
+            variant="subtitle1"
+            component="div"
+            sx={{
+              mt: 3,
+              fontWeight:600
+            }}
+          >
+            {doctor.name}
+          </Typography>
+          {/* <Typography variant="body2" color="text.secondary" sx={{ mt: 2, fontSize: 16,
+              letterSpacing: 1,
+              fontWeight: 500,
+              lineHeight: 1.5,}}>
+            {service.description}
+          </Typography> */}
+
+
+
+           {/* { doctor.image ?
                <img src={`data:image/jpeg;base64,${doctor.image.img}`} width="300px" />
                :
-                <img className="img-fluid mb-3" src={`http://localhost:5000/${doctor.image}`} alt="" width="200px"/>
+                <img className="img-fluid mb-3" src={`https://fathomless-scrubland-68650.herokuapp.com/${doctor.image}`} alt="" width="200px"/>
                 }
             <h4>{doctor.name}</h4> */}
-            
-            <p className="text-secondary"><FontAwesomeIcon  className="text-primary" icon={faPhoneSquare}/> +880-188-934789</p>
-        </div>
+        </CardContent>
+      </Card>
+    </Grid>
     );
 };
 
 export default Doctor;
+
+
+

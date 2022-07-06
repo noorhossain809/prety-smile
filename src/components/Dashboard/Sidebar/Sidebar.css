@@ -1,14 +1,16 @@
 .sidebar{
     background-image: linear-gradient(40deg, #19d3ae,#0fcfec);
-    position: fixed;
-    right: 20px;
+    height: 100%;
+    min-height: 100vh;
+    /* position: fixed;
+    right: 20px; */
 }
-.sidebar li{
-    margin-bottom: 2em;
-}
+/* .sidebar li{
+    margin-bottom: 1em;
+} */
 .sidebar li:hover span{
-    display: inline-block;
-    transform: translate(5px);
+    /* display: inline-block; */
+    /* transform: translate(2px); */
 }
 .sidebar svg{
     margin-right: 5px;
@@ -18,7 +20,7 @@
         text-decoration: none;
 }
 .sidebar li p{
-    font-size: 24px;
+    
 }
 .log{
     font-size: 24px;
