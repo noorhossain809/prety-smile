@@ -124,7 +124,7 @@ const useFirebase = () => {
     fetch(`https://fathomless-scrubland-68650.herokuapp.com/users/${user.email}`)
     .then(res => res.json())
     .then(data => setAdmin(data.admin))
-  }, [])
+  }, [user.email])
 
   const saveUser = (email, displayName, method) => {
     const user = {email, displayName}

@@ -22,6 +22,7 @@ const Appointments = () => {
       .then(res => res.json())
       .then(data => setAppointments(data))
   }, [date, user.email, token])
+  console.log(appointments)
 
   return (
     <Box sx={{backgroundColor: "#F4FDFB", pt:8}} px={{xs:2, sm:4, md:8}}>
@@ -55,7 +56,7 @@ const Appointments = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {appointments.map((appointment) => (
+                    {appointments.map((appointment, index) => (
                       <TableRow
 
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -18,6 +18,8 @@ const UserAppointments = () => {
     const [userAppointments, setUserAppointments] = useState([])
     const {user} = useAuth()
 
+    console.log(userAppointments)
+
     useEffect(() => {
         const url = `https://fathomless-scrubland-68650.herokuapp.com/appointment?email=${user.email}`
         fetch(url)
@@ -63,13 +65,13 @@ const UserAppointments = () => {
         </TableHead>
         <TableBody>
             {
-                userAppointments.map(appointments => (
+                userAppointments.map((appointments, index) => (
                     <TableRow
               
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell component="th" scope="row" style={{fontSize: 16, color: '#212121', fontWeight: 'medium'}}>
-                      01
+                      {index}
                     </TableCell>
                     <TableCell style={{ color: '#212121', fontWeight: 'medium'}}>{appointments.patientName}</TableCell>
                     <TableCell style={{ color: '#212121', fontWeight: 'medium'}}>{appointments.serviceName}</TableCell>

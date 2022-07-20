@@ -20,6 +20,7 @@ Modal.setAppElement('#root')
 
 
 const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time,setBookingSuccess }) => {
+    const [value, setValue] = React.useState(new Date());
     const {user} = useAuth()
     const initial = {
         email : user.email, 
@@ -55,8 +56,8 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date, time,se
             time,
             serviceName: appointmentOn,
             // date: date.toLocalDateString('dd/MM/yyyy')
-            date: new Date(date).toLocaleDateString()
-
+            date: new Date(date).toLocaleDateString(),
+            value: new Date().toLocaleDateString()
 
         }
         console.log(appointment)

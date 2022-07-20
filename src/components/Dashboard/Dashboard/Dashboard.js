@@ -1,6 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { Container, } from '@mui/material';
+import { Container, Typography, } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -51,7 +51,9 @@ const Dashboard = (props) => {
     // const [loggedInUser, setLoggedInUser] = useContext(AuthProvider)
     
     const [appointments, setAppointments] = useState([])
-    // console.log(appointments)
+    //  console.log('appointment id', appointments[0]._id)
+
+  
   
 
     useEffect(() => {
@@ -80,17 +82,16 @@ const Dashboard = (props) => {
         
     }
  
-
     return (
         <section>
             <Container>
                 <div style={containerStyle} className="d-flex">
-                    <div className="">
-                        <h2 className="mt-4 mx-4">Dashboard</h2>
+                    <div className="mt-4">
+                       
                         <div className="d-flex mt-4">
                             <Paper elevation={3} sx={{ borderRadius: 8, }} className="main-card mt-4">
                                 <div className="d-flex cards py-3 text-white">
-                                    <h1>09</h1>
+                                    <p>{appointments._id}</p>
                                     <div className="text">
                                         <p className="pending">Pending</p>
                                         <p >Appointments</p>
@@ -99,7 +100,7 @@ const Dashboard = (props) => {
                             </Paper>
                             <Paper elevation={3} sx={{ borderRadius: 8 }} className="main-card mt-4">
                                 <div className="d-flex cardInfo py-3 text-white" style={{ backgroundColor: '#2196f3' }}>
-                                    <h1>19</h1>
+                                    <h1>{appointments.length}</h1>
                                     <div className="text">
                                         <p className="pending">Today's <br /> Appointments</p>
 
@@ -159,13 +160,13 @@ const Dashboard = (props) => {
                                         </TableHead>
                                         <TableBody>
                                             {
-                                                appointments.map(appointment => (
+                                                appointments.map((appointment, index) => (
                                                     <TableRow
 
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row" style={{ fontSize: 16, color: '#212121', fontWeight: 'bold' }}>
-                                                    01
+                                                    {index}
                                                 </TableCell>
                                                 <TableCell style={{ fontSize: 16, color: '#212121', fontWeight: 'bold' }}>{appointment.patientName}</TableCell>
                                                 <TableCell style={{ fontSize: 16, color: '#212121', fontWeight: 'bold' }}>{appointment.time}</TableCell>
